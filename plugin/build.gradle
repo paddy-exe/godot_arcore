@@ -16,7 +16,7 @@ configurations { natives }
 android {
     buildToolsVersion = versions.buildTools
     compileSdkVersion versions.compileSdk
-    ndkVersion versions.ndkVersion
+    ndkVersion '21.4.7075529'
 
     defaultConfig {
         minSdkVersion versions.minSdk

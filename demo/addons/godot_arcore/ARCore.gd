@@ -1,15 +1,15 @@
-extends ARVROrigin
+extends XROrigin3D
 
 signal anchor_added(anchor)
 signal anchor_removed(anchor)
 
-export (PackedScene) var anchor_scene = null
+@export (PackedScene) var anchor_scene = null
 
-var arcore : ARVRInterface = null
+var arcore : XRInterface = null
 
 func tracker_added(tracker_name, tracker_type, tracker_id):
-	if tracker_type == ARVRServer.TRACKER_ANCHOR:
-		var new_anchor = anchor_scene.instance()
+	if tracker_type == XRServer.TRACKER_ANCHOR:
+		var new_anchor = anchor_scene.instantiate()
 		
 		new_anchor.anchor_id = tracker_id
 		new_anchor.set_name("anchor_" + str(tracker_id))
@@ -18,8 +18,8 @@ func tracker_added(tracker_name, tracker_type, tracker_id):
 		emit_signal("anchor_added", new_anchor)
 
 func tracker_removed(tracker_name, tracker_type, tracker_id):
-	if tracker_type == ARVRServer.TRACKER_ANCHOR:
-		var anchor = $ARVROrigin.get_node("anchor_" + str(tracker_id))
+	if tracker_type == XRServer.TRACKER_ANCHOR:
+		var anchor = $XROrigin3D.get_node("anchor_" + str(tracker_id))
 		if anchor:
 			emit_signal("anchor_removed", anchor)
 			anchor.queue_free()
@@ -43,10 +43,10 @@ func get_tracking_status() -> String:
 # Called when the node enters the scene tree for the first time.
 func initialize() -> String:
 	# register our signals
-	ARVRServer.connect("tracker_added", self, "tracker_added")
-	ARVRServer.connect("tracker_removed", self, "tracker_removed")
+	XRServer.connect("tracker_added", Callable(self, "tracker_added"))
+	XRServer.connect("tracker_removed", Callable(self, "tracker_removed"))
 	
-	arcore = ARVRServer.find_interface('ARCore')
+	arcore = XRServer.find_interface('ARCore')
 	if !arcore:
 		return "Failed to start ARCore"
 	
@@ -57,6 +57,6 @@ func initialize() -> String:
 	get_viewport().arvr = true
 	
 	# assign our camera
-	$ARVRCamera.environment.background_camera_feed_id = arcore.get_camera_feed_id()
+	$XRCamera3D.environment.background_camera_feed_id = arcore.get_camera_feed_id()
 	
 	return "Ok"
