@@ -1,0 +1,14 @@
+2a60927148abd1d33b818b535e306557
+::res://::1685314151
+Anchor.tscn::PackedScene::-1::1685314139::0::1::::<><>::
+cube_6.png::CompressedTexture2D::7185959446855612725::1685276488::1685314152::1::::<><>::
+default_env.tres::Environment::-1::1685314139::0::1::::<><>::
+export_presets.cfg::TextFile::-1::1685276488::0::1::::<><>::
+icon.png::CompressedTexture2D::8092994934919858487::1685276488::1685314152::1::::<><>::
+Main.gd::GDScript::-1::1685314139::0::1::::<>Node3D<>::
+Main.tscn::PackedScene::-1::1685314139::0::1::::<><>::res://Main.gd<>res://cube_6.png<>res://Anchor.tscn<>res://addons/godot_arcore/ARCore.tscn
+::res://addons/::1685276488
+::res://addons/godot_arcore/::1685276488
+ARCore.gd::GDScript::-1::1685314139::0::1::::<>XROrigin3D<>::
+ARCore.tscn::PackedScene::-1::1685314139::0::1::::<><>::res://addons/godot_arcore/ARCore.gd
+CHANGES.md::TextFile::-1::1685276488::0::1::::<><>::
